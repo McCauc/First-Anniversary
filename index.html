@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta charset="UTF-8" />
+    <title>First anniversary of love</title>
+    <link rel="stylesheet" type="text/css" href="./css/format.css" />
+  </head>
+
+  <body style="margin: 0px; overflow: hidden">
+    <audio id="bgMusic" loop>
+      <source
+        src="music/Plate of Love - Andrej Agas ft. Zereena -  Lyric Video.mp3"
+        type="audio/mpeg"
+      />
+      Your browser does not support the audio.
+    </audio>
+
+    <canvas></canvas>
+    <div id="imgTxt">
+      <span id="Txt"></span> <br />
+      <span id="tmp"></span>
+      <img id="img" src="" />
+    </div>
+    <div id="heartTxt">
+      <span id="clickMe">Click Meee!</span>
+      <div id="heart">
+        <button id="button" onclick="play()"></button>
+      </div>
+    </div>
+    <div id="content">
+      <h2 id="together">We have been together for</h2>
+      <div id="timer"><b id="d"></b> Days</div>
+    </div>
+
+    <div id="typeDiv">
+      <span id="txt1"></span> <br />
+      <span id="txt2"></span>
+    </div>
+
+    <script>
+      var ok = 0;
+      var flag = 1;
+      var myImage = document.getElementById("img");
+      var myTxt = document.getElementById("Txt");
+      var imageArray = [
+        "pic/shy.jpeg",
+        "pic/car.jpeg",
+        "pic/us.jpg",
+        "pic/pic1.jpg",
+        "pic/pic2.jpg",
+        "pic/pic3.jpg",
+        "pic/mm1.jpg",
+        "pic/pic4.jpeg",
+        "pic/mm2.jpg",
+        "pic/mm3.jpeg",
+        "pic/pic5.jpg",
+        "pic/pic6.jpg",
+        "pic/pic7.jpeg",
+        "pic/pic8.jpg",
+        "pic/pic9.jpg",
+        "pic/pic15.jpg",
+        "pic/pic10.jpg",
+        "pic/pic11.jpg",
+        "pic/pic12.jpg",
+        "pic/pic13.jpg",
+        "pic/pic14.jpg",
+        "pic/mm4.jpg",
+        "pic/pic16.jpg",
+        "pic/pic17.jpg",
+        "pic/mm5.jpeg",
+        "pic/pic18.jpg",
+        "pic/pic20.jpg",
+        "pic/pic19.jpg",
+        "pic/mm6.jpg",
+        "pic/pic22.jpeg",
+        "pic/mm7.jpg",
+        "pic/pic23.jpg",
+        "pic/pic24.jpeg",
+        "pic/sickmorning.jpg",
+        "pic/sickbed.jpg",
+        "pic/sickout.jpg",
+        "pic/pic25.jpeg",
+        "pic/mm8.jpg",
+        "pic/pic26.jpg",
+        "pic/pic27.jpg",
+        "pic/pic28.jpg",
+        "pic/pic29.jpg",
+        "pic/pic30.jpg",
+        "pic/mm10.png",
+        "pic/pic31.jpg",
+        "pic/pic32.jpg",
+        "pic/mm11.jpg",
+        "pic/pic33.jpg",
+        "pic/pic34.jpg",
+        "pic/pic35.jpg",
+        "pic/Youu.jpg",
+        "pic/Mee.jpg",
+        "pic/Uss.jpg",
+        "pic/Anniv.jpg",
+      ];
+      var imageIndex = 0;
+      var txtArray = [
+        "You 🩷",
+        "& I 🤎",
+        "Equals USSS 🩷🤎",
+        "BFF Date where it all started!😳",
+        "First Official Date🥰😊",
+        "Our First Boyrfriend's day date!!",
+        "Our Very First Monthsaryyy 🩷🎉",
+        "Before sumabak sa karakol👨‍🚒🌊",
+        "SM Date for our Second Monthsary~🍜🎂",
+        "3rd Monthsary at Tronix and Samgyup📸🥩",
+        "Dali and Street food after school date~😃",
+        "My Baby's Birthdayyyyy🎂🎉🩷",
+        "Ayala Malls Vermosa Lovlov's BDay Celebration 🌆🎊",
+        "Shycharms Beadshop School Booth!!!📿🧿",
+        "Our First Christmas Celebration with familyy🎄🍖",
+        "Cabalen for New Year's Eve!🍲🎇",
+        "Spending Our First New Year's Together🎆🕛",
+        "Our Baby Mesca 🤎🧸🩷",
+        "First Simba of 2025!!!⛪🙏",
+        "Going to Kuya's House for the First Time🏡🔑",
+        "School Festival Dance 💃🕺",
+        "Fourth Monthsary! Samgyup Date after school🥓🍗",
+        "Picnic Grove Tagaytay🧺🥗🌄",
+        "Happy Valentines Day 2025🍫❤️",
+        "Fifth Monthsary at Gala Food park👘🎌",
+        "Birthday surprise by my Lovlovvvv😭🥹🤎🩷🤎",
+        "Going to Ced'z Buffet for my Bday Celebration🍽️🍰",
+        "Christening of Amari Blythe👼✝️",
+        "SM Bacoor Again for Our Sixth~🎤🍧",
+        "Random date after school, cooked ramenn!🍜🥢",
+        "Clay Date at Our Seventh!!🍄🐢",
+        "Our First Holy Week together🕯️⛪",
+        "Volets Swimming!!!🏊🥽",
+        "UTI Checkup for my sweet baby🤒🥺",
+        "In bed with my baby🤧🥹",
+        "School works even when sick, grrrrrr😤🥹",
+        "Passing by a beach~🌊🐚",
+        "Pretty little Babyy on Our eighth💜🖼️",
+        "My Journalist Baby in Action at CVSU Indang!📰🥰",
+        "Solaire babies for a night🫢🎰🍽️",
+        "Lock Love on Lambingan Bridge on Our Ninth!!🔐🌉",
+        "Shycharms Beadshop visiting Somo Market!!🧿💎",
+        "Going to Cubao for World App~🌐🪙",
+        "Home Puzzle date for Our Tenth!🧩🏠",
+        "Aftermath of Vikings Buffet🍣🍖🥐🏨",
+        "Arcade Date for Girlfriends day!🎮🕹️",
+        "Our Eleventh at SM MOA Yayyyyy!!📷🎠",
+        "Our First Day of School Together this year!📚🖊️",
+        "Watched Conjuring: The Last Rites!!😱🎞️",
+        "My White Fairy Baby for our Photoshoot 🧚‍♀️💮🤍",
+        "Youuu🩷🩷🩷",
+        "Meee🤎🤎🤎",
+        "Ussssssssssssss!!!🩷🤎🩷🤎🩷🤎🩷🤎🩷🤎🩷🤎",
+        "Haappyy Anniversaryyy!!!🤎🎉🩷🎊🤎🎉🩷🎊🤎",
+      ];
+      var len = imageArray.length;
+      var t = 0;
+
+      // Music control
+      const music = document.getElementById("bgMusic");
+      const musicContainer = document.getElementById("musicContainer");
+      const musicBtn = document.getElementById("musicBtn");
+      let isPlaying = false;
+
+      function toggleMusic() {
+        if (isPlaying) {
+          music.pause();
+          musicBtn.textContent = "🔇";
+          musicBtn.style.opacity = "0.4";
+          musicContainer.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+        } else {
+          music
+            .play()
+            .then(() => {
+              musicBtn.textContent = "🎵";
+              musicBtn.style.opacity = "0.7";
+              musicContainer.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+            })
+            .catch(() => {
+              musicBtn.textContent = "🔇";
+              musicBtn.style.opacity = "0.4";
+            });
+        }
+        isPlaying = !isPlaying;
+      }
+
+      musicContainer.addEventListener("click", toggleMusic);
+
+      // Hover effects
+      musicContainer.addEventListener("mouseover", () => {
+        musicContainer.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+      });
+
+      musicContainer.addEventListener("mouseout", () => {
+        if (!isPlaying) {
+          musicContainer.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+        }
+      });
+    </script>
+
+    <script type="text/javascript" src="./js/stars.js"></script>
+    <script type="text/javascript" src="./js/typeWriter.js"></script>
+    <script type="text/javascript" src="./js/date.js"></script>
+    <script type="text/javascript" src="./js/playImg.js"></script>
+  </body>
+</html>
